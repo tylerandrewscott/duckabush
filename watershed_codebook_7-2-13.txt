@@ -1,0 +1,282 @@
+ 
+#########################
+#WSA Data Codebook
+#########################
+
+###
+#SITE INFO DATASETS
+###	
+NRSA0809_Data_SiteInformation_130411.csv				
+"EPA_REG"	"EPA region"				
+"FW_ECO3"	"Three climatic regions of the US used in WSA in indicator development: Eastern Highlands, West, and Plains and Lowlands"			
+"FW_ECO9"	"Aggregated level 3 ecoregions used in WSA"				
+"GREAT_RIVER"	"Great river site"				
+"HUC8"	"8-digit HUC catalog unit number"									
+"LMR_SITE"	"Lower Mississippi River site"				
+"LOC_NAME"	"Site name from verification form"								
+"MASTER_SITEID"	"If used in WSA, WSA Site_ID. If new, current Site_ID"				
+"MISS_SUB"	"Mississippi sub-basin"				
+"NHDWAT_AREA_SQKM"	"Area of NHDPlus navigated cumulative basin in square kilometers"	""		
+	#renamed AREA
+"SITE_ID"	"Site identification code"				
+"STATE"	"State in which site located"				
+"STRAHLERORDER"	"Strahler stream order from RF3 stream data"	
+	#renamed STRAHLER			
+"UID"	"Unique site visit ID"				
+"URBAN"	"Urban site"				
+"VISIT_NO"	"Visit number for that year"				
+"WGTNRSA09"	"NRSA population weight for site"
+	#renamed WEIGHT				
+"XLAT_DD"	"X-site GPS latitude decimal degrees"				
+"XLON_DD"	"X-site GPS longitude decimal degrees"				
+"YEAR"	"Sampling year"
+				
+WSA_SITEINFO_TS_FINAL.CSV
+40 COUNTY    Char  25                         County                                                                                      
+46 ECO3      Char   2                         Omernik Level 3 Ecoregion                              
+47 ECO3_NM   Char  50                         Omernik Level 3 Ecoregion Name                         
+54 ECOREPORT Char  50                         Aggregated NAECO2 Name used for reporting              
+49 ECOWSA3   Char   6 $6.         $6.         WSA Mega Reporting Unit (3 aggregated ecoregions)
+	#renamed FW_ECO9      
+48 ECOWSA9   Char   3 $4.         $4.         WSA Reporting Unit (9 aggregated ecoregions)           
+41 EPAREGION Char  15                         EPA Region
+	#renamed EPA_REG                                                                      
+58 HUC8      Char   8 $8.         $8.         8-digit HUC Catalog Unit Number                        
+59 HUC8_NM   Char  60                         HUC Catalog Unit Name                                       
+ 4 SITENAME  Char  80                         Site Name      
+	#renamed LOC_NAME to match with nrsa data                                                               
+ 1 SITE_ID   Char  25 $VARYING25. $VARYING25. Site Identification Code                               
+38 STATE     Char   2                         State                                                                                              
+12 STRAHLER  Num    8                          Strahler Order from RF3 Stream Data                                                                           
+ 3 VISIT_NO  Num    8 BEST8.      BEST8.      Within Year Site Visit Number                                                      
+23 WGT_WSA   Num    8                         Weight for statistical population estimation in km     
+45 WSAREA    Num    8                          Watershed Area Digitized from Maps (km2). Local       
+                                              Watershed Area if INTERBASIN                           
+	#renamed AREA                                           
+44 XELEV     Num    8                         Elevation at the X-site (m)                            
+10 XLAT_DD   Num    8                         X-site GPS Latitiude - Decimal Degrees                 
+ 9 XLON_DD   Num    8                         X-site GPS Longitude - Decimal Degrees                                       
+ 2 YEAR      Num    8 BEST12.     F12.        Year of Site Visit             
+
+
+############
+#benthic data
+############
+
+NRSA0809_Data_Benthics_Condition_130322.csv
+"DIVS_PT"	"Metric score for diversity metric"	""	0	10	""
+"FEED_PT"	"Metric score for functional feeding group"	""	0	10	""		
+"HABT_PT"	"Metric score for habit"	""	0	10	""
+"HPRIME"	"Shannon diversity"	""	0		""
+"MMI_BENT_CPL"	"Benthic MMI score for Coastal Plains (ECOWSA9)"	""	0	100	""
+"MMI_BENT_NAP"	"Benthic MMI score for Northern Appalachians (ECOWSA9)"	""	0	100	""
+"MMI_BENT_NPL"	"Benthic MMI score for Northern Plains (ECOWSA9)"	""	0	100	""
+"MMI_BENT_SAP"	"Benthic MMI score for Southern Appalachians (ECOWSA9)"	""	0	100	""
+"MMI_BENT_SPL"	"Benthic MMI score for Southern Plains (ECOWSA9)"	""	0	100	""
+"MMI_BENT_TPL"	"Benthic MMI score for Temperate Plains (ECOWSA9)"	""	0	100	""
+"MMI_BENT_UMW"	"Benthic MMI score for Upper Midwest (ECOWSA9)"	""	0	100	""
+"MMI_BENT_WMT"	"Benthic MMI score for Western Mountains (ECOWSA9)"	""	0	100	""
+"MMI_BENT_XER"	"Benthic MMI score for Xeric (ECOWSA9)"	""	0	100	""
+	#collapse these 9 into 1, rename MMI_BENT
+"NTAX_PT"	"Metric score for taxa richness"	""	0	10	""
+"SITE_ID"	"Site identification code"				
+"TOLR_PT"	"Metric score for tolerance metric"	""	0	10	""
+"UID"	"Unique site visit ID"				
+"VISIT_NO"	"Visit number for that year"	
+
+WSA_BENMET300_TS_FINAL.CSV                                    
+135 COMP_PT      Num    8                   Composition Best 6 MMI Scoring                                                               
+136 DIVS_PT      Num    8                   Diversity Best 6 MMI Scoring                                                                                                                                    
+130 EPT_PT       Num    8                   Composition Metric Score for Nationwide                  
+                                            MMI (based on %EPT taxa)                                                  
+137 FEED_PT      Num    8                   FFG Best 6 MMI Scoring                                   
+138 HABT_PT      Num    8                   Habitat Best 6 MMI Scoring                                                                 
+ 24 HPRIME       Num    8                   Shannon Diversity                                        
+133 HPRI_PT      Num    8                   Diversity Metric Score for Nationwide MMI                
+                                            (based on Shannon-Weiner Diversity)    
+	#renamed DIVS_PT                  
+129 INTL_PT      Num    8                   Pollution Tolerance Metric Score for Nationwide          
+                                            MMI (based on Itolerant Richness)
+	#renamed TOLR_PT                                            
+134 MMI_WSA      Num    8                   CONSISTENT 6 METRIC NATIONWIDE IBI                       
+141 MMI_WSABEST  Num    8                   Best 6 WSA MMI
+	#rename MMI_BENT                                                              
+139 RICH_PT      Num    8                   Richness Best 6 MMI Scoring
+	#renamed NTAX_PT                                                                                                   
+  4 SITENAME     Char  47 $47.     $47.     Stream Name                                              
+  1 SITE_ID      Char  25 $25.     $25.     Site Identification Code                                                                                      
+  3 VISIT_NO     Num    8 BEST8.   BEST8.   Within Year Site Visit Number                            
+ 15 XWIDTH       Num    8 BEST8.   BEST8.   Wetted Width -- Mean (m)                                 
+  2 YEAR         Num    8 BEST12.  F12.     Year of Site Visit   
+
+
+############
+#water chemistry data
+############
+NRSA0809_Data_WaterChemistry_130322.csv		
+"ANC"	"Acid Neutralizing Capcity"	"ueq/L"			
+"CA"	"Calicum"	"mg/L"			
+"CL"	"Cholride"	"mg/L"						
+"COND"	"Specific Conductance"	"uS/cm"							
+"DOC"	"Dissolved Organic Carbon"	"mg/L"			
+"K"	"Potassium"	"mg/L"			
+"MG"	"Magnesium"	"mg/L"					
+"NTL"	"Total Nitrogen"	"ug/L"					
+"PTL"	"Total Phosphorus"	"ug/L"									
+"SITE_ID"	"Site identification code"				
+"SO4"	"Sulfate"	"mg/L"			
+"SODIUM"	"Sodium"	"mg/L"			
+"TSS"	"Total Suspended Solids"	"mg/L"			
+"TURB"	"Turbidity"	"NTU"			
+"UID"	"Unique site visit ID"				
+"VISIT_NO"	"Visit number for that year"				
+"YEAR"	"Sampling year"				
+			
+WATERCHEMISTRY.CSV         
+13   ANC        Num      8   F8.1                        Gran ANC (ueq/L)
+29   CA         Num      8   F8.1                        Calcium (ueq/L)                                       
+43   CL         Num      8   F8.1                        Chloride (ueq/L)                                    
+11   COND       Num      8   F8.                         Conductivity (uS/cm @ 25 C)                                      
+23   DOC        Num      8   F8.2                        Dissolved Organic Carbon (mg/L)                                  
+35   K          Num      8   F8.1                        Potassium (ueq/L)                                    
+31   MG         Num      8   F8.1                        Magnesium (ueq/L)                                                  
+45   NTL        Num      8   F8.                         Total Nitrogen (ug/L)                            
+25   PTL        Num      8   F8.                         Total Phosphorus (ug/L)     
+33   NA         Num      8   F8.1                        Sodium (ueq/L)  
+	#change to SODIUM
+ 1   SITE_ID    Char    25   $VARYING25.   $VARYING25.   Site Identification Code  
+39   SO4        Num      8   F8.1                        Sulfate (ueq/L)                             
+17   TSS        Num      8                               Total Suspended Solids (mg/L)                           
+15   TURB       Num      8                               Turbidity (NTU)                                                  
+ 3   VISIT_NO   Num      8   BEST8.        BEST8.        Within Year Site Visit Number           
+ 2   YEAR       Num      8   BEST12.       F12.          Year of Site Visit                                                                  
+
+                   
+############
+#physical habitat condition
+#note: 1 file for wsa, 1 file for nrsa
+############
+
+NRSA0809_Data_PhysicalHabitat_Med_130322.csv
+"REACHLEN"*	"Sample Reach Length (m)"	"NONE"				
+"W1_HAG"*	"Human Agricultural Influence Index(distance-wtd tally of types and presence"	"NONE"						
+"W1_HALL"*	"Human Disturbance Index(distance-wtd tally of types and presence"	"NONE"				
+"W1_HNOAG"*	"Human Non-Agricultural Disturbance Index (distance weighted tally of types and presence)"	"NONE"				
+"W1H_WALL"*	"Near Channel Human Dist : Walls/dikes/revetments(distance-wtd tally of presence"	"NONE"	
+"W1H_PIPE"*	"Rip Dist--Pipes infl/effl (ProxWt Pres)"	"NONE"			
+"XWIDTH"*	"Mean Wetted Width (m)"	"NONE""XWIDTH"	"Mean Wetted Width (m)"	"NONE"	
+"XFC_ALL"*	"Fish Cvr-All Types (Sum Areal Prop)"	"NONE"
+"XFC_NAT"	"Sum of non-anthropogenic fish areal cover types"	"NONE"					
+"XWD_RAT"*	"Mean Wetted Width/Thalweg Depth ratio"	"NONE"					
+"XCDENBK"*	"Canopy Density at bank (mean percent)"	"NONE"	
+"XG"*	"Riparian Veg Ground Layer Cover"	"NONE"
+"SITE_ID"*	"Site identification code"				
+"UID"*	"Unique site visit ID"				
+"VISIT_NO"*	"Visit number for that year"
+"XFC_NAT"*	"Sum of non-anthropogenic fish areal cover types"	"NONE"	
+YEAR	Year sampled (either 2008 or 2009)	
+"XCMGW"*	"Sum of Woody Canopy+Mid+Ground layer areal cover proportion"	"NONE"	
+"LRBS_BW5"*	"Log10(Relative Bed Stability (Dgm/Dcb) (PRK 1999)"	"NONE"	
+		             
+
+PHABBEST.CSV
+44*   LRBS_BW5   Num      8                               Log10[Relative Bed Stability] - Est. 2  
+45*   REACHLEN   Num      8                               Length of sample reach (m)               
+ 3*   VISIT_NO   Num      8   BEST8.        BEST8.        Within Year Site Visit Number            
+39*   W1H_PIPE   Num      8                               Rip Dist--Pipes infl/effl (ProxWt Pres)  
+38*   W1H_WALL   Num      8                               Rip Dist--Wall/Bank Revet. (ProxWt Pres) 
+37*   W1_HAG     Num      8                               Rip Dist--Sum Agric Types (ProxWt Pres)  
+35*   W1_HALL    Num      8                               Rip Dist--Sum All Types (ProxWt Pres)    
+36*   W1_HNOAG   Num      8                               Rip Dist--Sum NonAg Types (ProxWt Pres) 
+21*   XCDENBK    Num      8                               Mean Bank Canopy Density (%)  
+32*   XFC_ALL    Num      8                               Fish Cvr-All Types (Sum Areal Prop) 
+"XFC_NAT"	"Sum of non-anthropogenic fish areal cover types"	"NONE"	   
+17*   XG         Num      8                               Riparian Veg Ground Layer Cover  
+71*   XWD_RAT    Num      8                               Mean Width/Depth Ratio (m/m)             
+69*   XWIDTH     Num      8                               Wetted Width -- Mean (m) 
+ 1*    SITE_ID     Char     25    $VARYING25.    $VARYING25.    Site Identification Code 
+ 3*    VISIT_NO    Num       8    BEST8.         BEST8.         Within Year Site Visit Number                   
+ 2*   YEAR       Num      8   BEST12.       F12.          Year of Site Visit  
+19*   XCMGW      Num      8                               Rip Veg Canopy+Mid+Ground Woody Cover     
+	#NOTE: LOG TRANSFORM TO MAKE SAME FORM AS NRSA
+	#RENAME L_XCMGW
+33*   XFC_NAT    Num      8                               Fish Cvr-Natural Types (Sum Areal Prop) 
+
+
+
+
+
+
+
+
+
+
+
+#####
+#DATA PRESENT IN NRSA, NOT IN WSA
+
+NRSA0809_Data_Enterococci_Condition_130322.csv
+SITE_ID	National Rivers and Streams Assessment 2008/09 site identification.  Unique to that site/station.	YEAR	Year sampled (either 2008 or 2009)	VISIT_NO	Assigned visit number.  Some sites were sampled twice for QA purposes and were assigned visit 2 for the second visit.  This file does not contain visit 2 data.	siteID05	Wadeable Streams Assessment site identification.  A number of WSA sites were selected for revisit during the NRSA 08/09.	NRSA09	Denotes whether this site was part of the NRSA 2008/09 survey	WSA	Denotes whether this site was part of the WSA survey.  For WSA, western US sites were sampled as part of EMAP west while most Eastern sites were sampled in 2004 	EMAP_West	Denotes whether this site was part of EMAP West survey that made up part of the overall WSA	Cat_Unique	Provides a unique categorization to identiy which of the three surveys (NRSA 08/09, WSA and EMAP West) the site was part of	
+UrbanCat	Urban or nonurban as defined by DESCRIBE	WgtWSAeast	Survey design weight for the site for WSA east sites	WgtEMAPwst	Survey design weight for the site for EMAP West sites	WgtNRSA09	Final NRSA weights	MAJ_BAS_NM	Major basin name	FED_OWN	Federal or not	FSEASTWEST	Forest Service land East or West ??????		UID	Unique id for the site and visit number combination		ENT_NEEAR_PCR_CCE_100ML	Results used in the report.  Enterococcus Calibrator Cell Equivalents per 100-mL Sample Volume after applying the correction factor.	STV at 1280  (used in report) 
+ENTE_NEEAR_CCE_STV_COND	NRSA 08/09 Report Results:  Condition estimates using the corrected results and a 1280 STV CCE per 100 ml threshold	
+
+NRSA0809_Data_Fish_Condition_130322.csv				
+"FISH_MMI_COND"	"Fish assemblage condition, based on regional Fish MMI."	""			"Good|Fair|Poor|Not Assessed|Insufficient Sampling|No Data"
+"MMI_FISH_EHIGH"	"Fish multimetric index for Eastern Highlands"	""	0	100	""
+"MMI_FISH_PLNLOW"	"Fish multimetric index for Plains and Lowlands climatic region"	""	0	100	""
+"MMI_FISH_WMTNS"	"Fish multimetric index for West and Mountains"	""	0	100	""
+"SITE_ID"	"Site identification code"				
+"UID"	"Unique site visit ID"				
+"VISIT_NO"	"Visit number for that year"				
+
+NRSA0809_Data_Periphyton_Condition_130322.csv	
+"MMI_PERI_EHIGH"	"Periphyton multimetric index score for Eastern Highlands"	""	0	100	""
+"MMI_PERI_PLNLOW"	"Periphyton multimetric index score for Plains and Lowlands"	""	0	100	""
+"MMI_PERI_WMTNS"	"Periphyton multimetric index score for West and Mountains"	""	0	100	""		
+"PERI_MMI_COND"	"Periphyton assemblage condition, based on regional MMI"	""			"Good|Fair|Poor|No Data"
+"SITE_ID"	"Site identification code"				
+"UID"	"Unique site visit ID"				
+"VISIT_NO"	"Visit number for that year"				
+
+##########
+#DATA IN WSA, NOT IN NRSA
+##########
+
+WATERSHEDSTRESSOR.CSV               
+ 4 LANDAREA Num    8                         Watershed Area (sq km)                                   
+ 8 PAGT     Num    8                         % Watershed Ag (NLCD-81,82,83,84,61)                     
+ 5 PFOR     Num    8                         % Watershed Forest (NLCD-41,42,43)                       
+10 POPDENS  Num    8                         1990 population density reported as population           
+                                             count/area of watershed in km2                           
+12 PRECIP_M Num    8                         Annual Precipitation (m)                                 
+ 7 PURB     Num    8                         % Watershed Urban (NLCD-21,22,23,85)                     
+ 6 PWETL    Num    8                         % Watershed Wetlands (NLCD-91,92)                        
+ 9 RDDENS   Num    8                         Road density reported as km of                           
+                                             roads/area of watershed in km2                           
+ 1 SITE_ID  Char  25 $VARYING25. $VARYING25. Site Identification Code                                 
+ 3 VISIT_NO Num    8 BEST8.      BEST8.      Within Year Site Visit Number                            
+ 2 YEAR     Num    8 BEST12.     F12.        Year of Site Visit         
+
+
+RIPARIAN.CSV
+28   BLDG       Char     1                               presence of buildings (O,P,C,B)                    
+10   BTRE       Char     1                               dens. of big (<0.3m DBH) trees in canopy
+ 8   CANV       Char     1                               Type of canopy veg                      
+40   CROP       Char     1                               presence of row crops (O,P,C,B)         
+36   LDFL       Char     1                               presence of landfill or trash (O,P,C,B) 
+44   LOG        Char     1                               presence of logging operations (O,P,C,B)
+46   MINACT     Char     1                               presence of mining activity (O,P,C,B)   
+38   PARK       Char     1                               presence of park or lawn (O,P,C,B)      
+34   PIPE       Char     1                               presence of intake of outlet (O,P,C,B)  
+42   PSTR       Char     1                               presence of pasture/range/hay (O,P,C,B) 
+30   PVMT       Char     1                               presence of pavement (O,P,C,B)          
+32   ROAD       Char     1                               presence of road/railroad (O,P,C,B)     
+ 1   SITE_ID    Char    25   $VARYING25.   $VARYING25.   Site Identification Code                
+14   UNDV       Char     1                               type of understory veg                  
+ 3   VISIT_NO   Num      8   BEST8.        BEST8.        Within Year Site Visit Number           
+26   WALL       Char     1                               Presence of wall/dam/other (O,P,C,B)    
+16   WOOD       Char     1                               understory  (0.5-5m) cover by woody veg 
+ 2   YEAR       Num      8   BEST12.       F12.          Year of Site Visit  
+
+
+

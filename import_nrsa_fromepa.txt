@@ -1,0 +1,83 @@
+ipython --pylab
+import pandas
+from pandas import read_csv
+from urllib import urlopen
+
+#merge site information files
+page = urlopen("http://water.epa.gov/type/rsl/monitoring/riverssurvey/upload/NRSA0809_Data_SiteInformation_130411.csv")
+siteinfo_nrsa = read_csv(page)
+page = urlopen("http://water.epa.gov/type/rsl/monitoring/streamsurvey/upload/wsa_siteinfo_ts_final.csv")
+siteinfo_wsa = read_csv(page)
+key_info_wsa = ['SITE_ID','DATE_COL','YEAR','EPAREGION','ST_ORDER','STATE','ECOWSA9']
+key_info_nrsa = ['MASTER_SITEID','DATE_COL','YEAR','EPA_REG','STRAHLERORDER','STATE','FW_ECO9']
+siteinfo_both = pandas.merge(siteinfo_nrsa,siteinfo_wsa,left_on=key_info_nrsa,right_on=key_info_wsa,how='outer')
+
+
+#merge benthic files into 1 set
+page = urlopen("http://water.epa.gov/type/rsl/monitoring/streamsurvey/upload/wsa_benmet300_ts_final.csv")
+benthic_wsa = pandas.DataFrame(read_csv(page))
+
+page1 = urlopen("http://water.epa.gov/type/rsl/monitoring/riverssurvey/upload/NRSA0809_Data_Benthics_Condition_130322.csv")
+#exclude benthic counts
+#page2 = urlopen("http://water.epa.gov/type/rsl/monitoring/riverssurvey/upload/NRSA0809_Data_Benthics_Counts_130322.csv")
+page3 = urlopen("http://water.epa.gov/type/rsl/monitoring/riverssurvey/upload/NRSA0809_Data_Benthics_Metrics_130322.csv")
+#exclude taxonomic ids
+#page4 = urlopen("http://water.epa.gov/type/rsl/monitoring/riverssurvey/upload/NRSA0809_Data_Benthics_Taxa_130322.csv")
+df1 = read_csv(page1)
+df3 = read_csv(page3)
+benthic_nrsa = pandas.DataFrame(pandas.concat([df1,df3],axis = 0, join = 'outer'))
+
+
+visit = benthic_wsa['VISIT_NO']
+for v in visit:
+    if visit[v-1] == 1:
+    	print "duplicate" 
+    
+    & benthic_wsa['SITE_ID'][v] == benthic_wsa['SITE_ID'][v-1]:
+        print "duplicate"
+    
+   visit[v] == 2 &      
+
+if visit
+
+
+benthic_concat = pandas.concat([benthic_wsa,benthic_nrsa],axis=0,join='outer')
+benthic_merge = pandas.merge(benthic_wsa,benthic_nrsa,on = None,how='outer')
+
+
+
+
+benthicmetrics_nrsa = read_csv(page2)
+
+
+
+
+benthicmetrics_both = pandas.merge(benthicmetrics_wsa, benthicmetrics_nrsa, on = None, how = 'outer')
+
+
+
+#merge NRSA benthic files into one dataset
+
+page3 = urlopen("http://water.epa.gov/type/rsl/monitoring/riverssurvey/upload/NRSA0809_Data_Benthics_Metrics_130322.csv")
+page4 = urlopen("http://water.epa.gov/type/rsl/monitoring/riverssurvey/upload/NRSA0809_Data_Benthics_Taxa_130322.csv")
+benthiccount_nrsa = read_csv(page1)
+benthiccondi_nrsa = read_csv(page2)
+benthicmetrics_nrsa = read_csv(page3)
+benthictaxa_nrsa = read_csv(page4)
+
+
+benthic_nrsa = pandas.concat([benthiccount_nrsa,benthiccondi_nrsa,benthicmetrics_nrsa,benthictaxa_nrsa],axis = 0, join = 'outer')
+
+benthiccount_nrsa.join([benthiccondi_nrsa,benthicmetrics_nrsa,benthictaxa_nrsa], on = None, how = 'outer')
+benthiccc
+
+
+benthiccount_wsa.names
+siteinfo_nrsa['MASTER_SITEID']
+
+def readFromEPA(link,dfname):
+    page = urlopen("link")
+    dfname = read_csv(page)
+    
+    
+    

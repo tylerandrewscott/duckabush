@@ -1,0 +1,512 @@
+peopletodraw<-sample(1:nrow(data),numinblock,replace=TRUE)
+#which questions to draw
+mm<-design[i,]
+#pull from observed data, questions in mm
+df<-data[peopletodraw,mm]
+allblocks[(beg:end),mm]<-df
+}
+return(allblocks)
+}
+fakesample()
+#Build Fake Data
+fakesample<-function(design=test,data=sd,nblocks=12,qsperblock=5,numinblock=100)
+{
+total<-numinblock*nblocks
+allblocks<-matrix(NA,nrow=total,ncol=ncol(data))
+for(i in 1:nblocks)
+{
+beg<-1+(numinblock*(i-1))
+end<-numinblock+(numinblock*(i-1))
+#sample from observed complete individuals
+peopletodraw<-sample(1:nrow(data),numinblock,replace=TRUE)
+#which questions to draw
+mm<-test[i,]
+#pull from observed data, questions in mm
+df<-data[peopletodraw,mm]
+allblocks[(beg:end),mm]<-df
+}
+return(allblocks)
+}
+fakesample()
+test[2,]
+mm<- test[2,]
+mm
+sd[peopletodraw,mm]
+#Build Fake Data
+fakesample<-function(design=test,data=sd,nblocks=12,qsperblock=5,numinblock=100)
+{
+total<-numinblock*nblocks
+allblocks<-matrix(NA,nrow=total,ncol=ncol(data))
+for(i in 1:nblocks)
+{
+beg<-1+(numinblock*(i-1))
+end<-numinblock+(numinblock*(i-1))
+#sample from observed complete individuals
+peopletodraw<-sample(1:nrow(data),numinblock,replace=TRUE)
+#which questions to draw
+mm<- test[2,]
+#pull from observed data, questions in mm
+df<-sd[peopletodraw,mm]
+allblocks[(beg:end),mm]<-df
+}
+return(allblocks)
+}
+fakesample()
+#Build Fake Data
+fakesample<-function(design=test,data=sd,nblocks=12,qsperblock=5,numinblock=100)
+{
+total<-numinblock*nblocks
+allblocks<-matrix(NA,nrow=total,ncol=ncol(data))
+for(i in 1:nblocks)
+{
+beg<-1+(numinblock*(i-1))
+end<-numinblock+(numinblock*(i-1))
+#sample from observed complete individuals
+peopletodraw<-sample(1:nrow(data),numinblock,replace=TRUE)
+#which questions to draw
+mm<- design[2,]
+#pull from observed data, questions in mm
+df<-data[peopletodraw,mm]
+allblocks[beg:end,mm]<-df
+}
+return(allblocks)
+}
+fakesample()
+#Build Fake Data
+fakesample<-function(design=test,data=sd,nblocks=12,qsperblock=5,numinblock=100)
+{
+total<-numinblock*nblocks
+allblocks<-data.frame(matrix(NA,nrow=total,ncol=ncol(data)))
+for(i in 1:nblocks)
+{
+beg<-1+(numinblock*(i-1))
+end<-numinblock+(numinblock*(i-1))
+#sample from observed complete individuals
+peopletodraw<-sample(1:nrow(data),numinblock,replace=TRUE)
+#which questions to draw
+mm<- design[2,]
+#pull from observed data, questions in mm
+df<-data[peopletodraw,mm]
+allblocks[beg:end,mm]<-df
+}
+return(allblocks)
+}
+fakesample()
+tt<-fakesample()
+tt
+dim(tt)
+#GENERATE MULTIPLE BLOCK DESIGNS
+multdesigns <- function(ndesigns=2,nblocks=12,qsperblock=5,screeners=c(1,4))
+{
+designs <- list()
+for (i in 1:ndesigns)
+{
+designs[[i]]<-makedesign(nblocks,qsperblock,screeners)
+}
+return(designs)
+}
+multdesigns(screeners=c(2,5))
+allblocks
+#Build Fake Data for 1 design
+fakesample<-function(design=test,data=sd,nblocks=12,qsperblock=5,numinblock=100)
+{
+total<-numinblock*nblocks
+allblocks<-data.frame(matrix(NA,nrow=total,ncol=ncol(data)))
+for(i in 1:nblocks)
+{
+beg<-1+(numinblock*(i-1))
+end<-numinblock+(numinblock*(i-1))
+#sample from observed complete individuals
+peopletodraw<-sample(1:nrow(data),numinblock,replace=TRUE)
+#which questions to draw
+mm<- design[2,]
+#pull from observed data, questions in mm
+df<-data[peopletodraw,mm]
+allblocks[beg:end,mm]<-df
+}
+return(allblocks)
+}
+test<-fakesample()
+test
+test
+design
+tt<-makedesign()
+tt
+ff<-fakesample(design=tt,data=sd,qsperblock=5,nblocks=12,numinblock=50)
+ff
+ff<-fakesample(design=tt,data=sd,qsperblock=5,nblocks=12,numinblock=10)
+ff
+ff<-fakesample(design=tt,data=sd,qsperblock=5,nblocks=12,numinblock=10)
+ff
+mm
+mm
+#Build Fake Data for 1 design
+fakesample<-function(design=test,data=sd,nblocks=12,qsperblock=5,numinblock=100)
+{
+total<-numinblock*nblocks
+allblocks<-data.frame(matrix(NA,nrow=total,ncol=ncol(data)))
+for(i in 1:nblocks)
+{
+beg<-1+(numinblock*(i-1))
+end<-numinblock+(numinblock*(i-1))
+#sample from observed complete individuals
+peopletodraw<-sample(1:nrow(data),numinblock,replace=TRUE)
+#which questions to draw
+mm<- design[i,]
+#pull from observed data, questions in mm
+df<-data[peopletodraw,mm]
+allblocks[beg:end,mm]<-df
+}
+return(allblocks)
+}
+ff<-fakesample(design=tt,data=sd,qsperblock=5,nblocks=12,numinblock=10)
+ff
+tt<-makedesign()
+ff<-fakesample(design=tt,data=sd,qsperblock=5,nblocks=12,numinblock=10)
+ff
+ff
+?mi
+functiom(block,n.iter=10,n.imp=3)
+{
+imputdat<-mi(block,n.iter=n.iter, n.imp=3, rand.imp.method="bootstrap", add.noise=noise.control(method="reshuffling", K=1))
+}
+imputedata<-functiom(block,n.iter=10,n.imp=3)
+{
+imputdat<-mi(block,n.iter=n.iter, n.imp=3, rand.imp.method="bootstrap", add.noise=noise.control(method="reshuffling", K=1))
+}
+ff
+imputedata<-functiom(block=ff,n.iter=10,n.imp=3)
+{
+imputedat<-mi(block,n.iter=n.iter, n.imp=3, rand.imp.method="bootstrap", add.noise=noise.control(method="reshuffling", K=1))
+return(imputedat)
+}
+imputedata<-functiom(block=ff,n.iter=10,n.imp=3)
+{
+imputedat<-mi(object=block,n.iter=n.iter, n.imp=3, rand.imp.method="bootstrap", add.noise=noise.control(method="reshuffling", K=1))
+return(imputedat)
+}
+ff
+is.data.frame(ff)
+fakelist<-multdesigns()
+fakelist[[1]]
+fakelist
+?lapply
+lapply(fakelist,mi,n.iter=10,n.imp=3,rand.imp.method='bootstrap',add.noise=noice.control(method='reshuffling',K=1))
+?mi
+dim(fakelist)
+fakelist
+length(fakelist)
+lapply(1:length(fakelist),function(x), mi(object=fakelist[[x]]))
+lapply(1:length(fakelist),function(x) mi(object=fakelist[[x]]))
+fakelist[[1]]
+class(fakelist[[1]])
+lapply(1:length(fakelist),function(x) mi(object=as.data.frame(fakelist[[x]])))
+sapply(1:length(fakelist),function(x) mi(object=as.data.frame(fakelist[[x]])))
+l <- replicate(20, runif(sample(1:10, 1)), simplify = FALSE)
+l
+lapply(l,length)
+lapply(fakelist,mi)
+#GENERATE MULTIPLE BLOCK DESIGNS
+multdesigns <- function(ndesigns=2,nblocks=12,qsperblock=5,screeners=c(1,4))
+{
+designs <- list()
+for (i in 1:ndesigns)
+{
+designs[[i]]<-as.data.frame(makedesign(nblocks,qsperblock,screeners))
+}
+return(designs)
+}
+fakelist<-multdesigns()
+fakelist
+fakelist[[1]]
+class(fakelist[[1]])
+lapply(fakelist,mi)
+dim(fakelist[[1]])
+dimnames(fakelist[[1]])
+mi(fakelist[[1]])
+?mi.objct
+?mi.object
+class(fakelist[[1]])
+test<-fakelist[[1]]
+test
+test<-fakesample()
+#Build Fake Data for 1 design
+fakesample<-function(design=test,data=sd,nblocks=12,qsperblock=5,numinblock=100)
+{
+total<-numinblock*nblocks
+allblocks<-data.frame(matrix(NA,nrow=total,ncol=ncol(data)))
+for(i in 1:nblocks)
+{
+beg<-1+(numinblock*(i-1))
+end<-numinblock+(numinblock*(i-1))
+#sample from observed complete individuals
+peopletodraw<-sample(1:nrow(data),numinblock,replace=TRUE)
+#which questions to draw
+mm<- design[i,]
+#pull from observed data, questions in mm
+df<-data[peopletodraw,mm]
+allblocks[beg:end,mm]<-df
+}
+return(allblocks)
+}
+sd
+test
+test<-fakesample(data=sd,design=test)
+sd
+class(sd)
+#Build Fake Data for 1 design
+fakesample<-function(design=test,data=sd,nblocks=12,qsperblock=5,numinblock=100)
+{
+total<-numinblock*nblocks
+allblocks<-data.frame(matrix(NA,nrow=total,ncol=ncol(data)))
+for(i in 1:nblocks)
+{
+beg<-1+(numinblock*(i-1))
+end<-numinblock+(numinblock*(i-1))
+#sample from observed complete individuals
+peopletodraw<-c(sample(1:nrow(data),numinblock,replace=TRUE))
+#which questions to draw
+mm<- c(design[i,])
+#pull from observed data, questions in mm
+df<-data[peopletodraw,mm]
+allblocks[beg:end,mm]<-df
+}
+return(allblocks)
+}
+test<-fakesample(data=sd,design=test)
+#Build Fake Data for 1 design
+fakesample<-function(design=test,data=sd,nblocks=12,qsperblock=5,numinblock=100)
+{
+total<-numinblock*nblocks
+allblocks<-data.frame(matrix(NA,nrow=total,ncol=ncol(data)))
+for(i in 1:nblocks)
+{
+beg<-1+(numinblock*(i-1))
+end<-numinblock+(numinblock*(i-1))
+#sample from observed complete individuals
+peopletodraw<-c(sample(1:nrow(data),numinblock,replace=TRUE))
+print(peopletodraw)
+#which questions to draw
+mm<- c(design[i,])
+#pull from observed data, questions in mm
+df<-data[peopletodraw,mm]
+allblocks[beg:end,mm]<-df
+}
+return(allblocks)
+}
+test<-fakesample(data=sd,design=test)
+#Build Fake Data for 1 design
+fakesample<-function(design=test,data=sd,nblocks=12,qsperblock=5,numinblock=100)
+{
+total<-numinblock*nblocks
+allblocks<-data.frame(matrix(NA,nrow=total,ncol=ncol(data)))
+for(i in 1:nblocks)
+{
+beg<-1+(numinblock*(i-1))
+end<-numinblock+(numinblock*(i-1))
+#sample from observed complete individuals
+peopletodraw<-c(sample(1:nrow(data),numinblock,replace=TRUE))
+print(peopletodraw)
+#which questions to draw
+mm<- c(design[i,])
+print(mm)
+#pull from observed data, questions in mm
+df<-data[peopletodraw,mm]
+allblocks[beg:end,mm]<-df
+}
+return(allblocks)
+}
+test<-fakesample(data=sd,design=test)
+test
+test[2,]
+as.vector(test[2,])
+as.numeric(test[2,])
+c(as.numeric(test[2,]))
+#Build Fake Data for 1 design
+fakesample<-function(design=test,data=sd,nblocks=12,qsperblock=5,numinblock=100)
+{
+total<-numinblock*nblocks
+allblocks<-data.frame(matrix(NA,nrow=total,ncol=ncol(data)))
+for(i in 1:nblocks)
+{
+beg<-1+(numinblock*(i-1))
+end<-numinblock+(numinblock*(i-1))
+#sample from observed complete individuals
+peopletodraw<-c(sample(1:nrow(data),numinblock,replace=TRUE))
+print(peopletodraw)
+#which questions to draw
+mm<- c(as.numeric(design[i,]))
+print(mm)
+#pull from observed data, questions in mm
+df<-data[peopletodraw,mm]
+allblocks[beg:end,mm]<-df
+}
+return(allblocks)
+}
+temp<-fakesample(data=sd,design=test)
+temp
+temp<-multdesigns()
+temp
+temp1<-lapply(1:length(temp), function(x) fakesample(data=temp[[x]]))
+#Build Fake Data for 1 design
+fakesample<-function(design=test,data=sd,nblocks=12,qsperblock=5,numinblock=100)
+{
+total<-numinblock*nblocks
+allblocks<-data.frame(matrix(NA,nrow=total,ncol=ncol(data)))
+for(i in 1:nblocks)
+{
+beg<-1+(numinblock*(i-1))
+end<-numinblock+(numinblock*(i-1))
+#sample from observed complete individuals
+peopletodraw<-c(sample(1:nrow(data),numinblock,replace=TRUE))
+#which questions to draw
+mm<- c(as.numeric(design[i,]))
+#pull from observed data, questions in mm
+df<-data[peopletodraw,mm]
+allblocks[beg:end,mm]<-df
+}
+return(allblocks)
+}
+#Build Fake Data for 1 design
+fakesample<-function(design,data=sd,nblocks=12,qsperblock=5,numinblock=100)
+{
+total<-numinblock*nblocks
+allblocks<-data.frame(matrix(NA,nrow=total,ncol=ncol(data)))
+for(i in 1:nblocks)
+{
+beg<-1+(numinblock*(i-1))
+end<-numinblock+(numinblock*(i-1))
+#sample from observed complete individuals
+peopletodraw<-c(sample(1:nrow(data),numinblock,replace=TRUE))
+#which questions to draw
+mm<- c(as.numeric(design[i,]))
+#pull from observed data, questions in mm
+df<-data[peopletodraw,mm]
+allblocks[beg:end,mm]<-df
+}
+return(allblocks)
+}
+temp
+temp1<-lapply(1:length(temp), function(x) fakesample(design=temp[[x]]))
+temp1
+length(temp1)
+class(temp1[[1]])
+temp2<-lapply(1:length(temp1), function(x) mi(object=temp1[[x]]))
+temp2
+?mclapply
+library(dplyr)
+?mcapply
+?mclapply
+require(multicore)
+?mclapply
+getOption('cores')
+temp2<-mclapply(1:length(temp1), function(x) mi(object=temp1[[x]],n.iter=5),mc.cores=2)
+library(parallel)
+detach(library=parallel)
+detach(library='parallel')
+.32^2
+.37^2
+(.32^2)/250
+(.37^2)/250
+(.32^2)/250 + (.37^2)/250
+sqrt((.32^2)/250 + (.37^2)/250)
+0.16/0.03256
+.16+2.60*0.0305
+.16+2.60*0.0305
+.16-2.60*0.0305
+.16+2.60*0.03
+.16-2.60*0.03
+0.03*2.6
+2.6*0.0305
+require(mapproj)
+require(ggmap)
+require(DeducerSpatial)
+require(UScensus2010)
+require("rgdal") # requires sp, will use proj.4 if installed
+require("maptools")
+require("ggplot2")
+require("plyr")
+rm(list=ls())
+setwd('//Users/TScott/Google Drive/duckabush')
+source('model_prep.R')
+rm(list=ls())
+require(mapproj)
+require(ggmap)
+require(DeducerSpatial)
+require(UScensus2010)
+require("rgdal") # requires sp, will use proj.4 if installed
+require("maptools")
+require("ggplot2")
+require("plyr")
+rm(list=ls())
+setwd('//Users/TScott/Google Drive/duckabush')
+source('model_prep.R')
+table(fdat$GROUP~fdat$STATE)
+table(fdat$GROUP,fdat$STATE)
+setwd('//Users/TScott/Google Drive/duckabush')
+list.files()
+dat<-read.csv('07slsstab2a.csv')
+head(dat)
+names(dat)
+dat[,5]
+rm(list=ls())
+require(mapproj)
+require(ggmap)
+require(DeducerSpatial)
+require(UScensus2010)
+require("rgdal") # requires sp, will use proj.4 if installed
+require("maptools")
+require("ggplot2")
+require("plyr")
+setwd('//Users/TScott/Google Drive/duckabush')
+list.files()
+source('model_prep.R')
+#dat<-read.csv('07slsstab2a.csv')
+#names(dat)
+fdat$long<-fdat$XLON_DD.x
+fdat$lat<-fdat$XLAT_DD.x
+require(acs)
+require(plyr)
+require(Hmisc)
+fdat$COUNTY<-ifelse(fdat$COUNTY=='Bedford','Bedford County',as.character(fdat$COUNTY))
+fdat$COUNTY<-ifelse(fdat$COUNTY=='Dekalb','DeKalb County',as.character(fdat$COUNTY))
+fdat$COUNTY<-ifelse(fdat$COUNTY=='Mchenry','McHenry County',as.character(fdat$COUNTY))
+fdat$COUNTY<-ifelse(fdat$COUNTY=='Lewis And Clark','Lewis and Clark County',as.character(fdat$COUNTY))
+fdat$COUNTY<-ifelse(fdat$COUNTY=='Clay','Clay County',as.character(fdat$COUNTY))
+fdat$COUNTY<-ifelse(fdat$COUNTY=='Mclennan','McLennan County',as.character(fdat$COUNTY))
+geo.place<-foreach(i = 1:nrow(fdat)) %do% geo.make(state=as.character(fdat$STATE[i]),
+county=as.character(fdat$COUNTY[i]))
+county.med.income<-llply(.data=geo.place,.progress='text',
+.fun=acs.fetch,endyear=2011,span=5,table.number='B19301')
+#All workers >16
+county.tot.workers<-llply(.data=geo.place,.progress='text',col.names='pretty',
+.fun=acs.fetch,endyear=2011,span=5,
+table.number='B99241',variable='B99241_001')
+#Agriculture, Forestry, Fishing And Hunting, And Mining
+county.nat.workers<-llply(.data=geo.place,.progress='text',col.names='pretty',
+.fun=acs.fetch,endyear=2011,span=5,
+table.number='C24050',variable='C24050_002')
+#fdat$county.nat.work.est<-laply(county.nat.workers,estimate)
+#fdat$county.tot.work.est<-laply(county.tot.workers,estimate)
+#fdat$county.nat.work.est.prop<-county.nat.work.est/county.tot.work.est
+#fdat$county.med.income.est<-laply(county.med.income,estimate)
+setwd('//Users/TScott/Downloads/elpo08p020_nt00335')
+elec = readOGR(dsn='//Users/TScott/Downloads/elpo08p020_nt00335',
+layer="elpo08p020")
+elec@data$id = rownames(elec@data)
+elec.points = fortify(elec, region="id")
+elec.df = join(elec.points, elec@data, by="id")
+elec.sub.df<-elec.df[elec.df$STATE!='HI'&elec.df$STATE!='AK',]
+elec.sub.df$COUNTY_STATE<-paste(tolower(elec.sub.df$COUNTY),elec.sub.df$STATE,sep=', ')
+elec.sub.df$COUNTY_STATE<-(gsub(' COUNTY','',elec.sub.df$COUNTY_STATE))
+elec.sub.df$COUNTY_STATE<-(gsub(' parish','',elec.sub.df$COUNTY_STATE))
+elec.sub.df<-elec.sub.df[duplicated(elec.sub.df$COUNTY_STATE)==FALSE,]
+fdat$COUNTY_STATE<-paste(fdat$COUNTY_lcase,fdat$STATE,sep=', ')
+fdat$COUNTY_STATE<-gsub('st. ','saint ',fdat$COUNTY_STATE)
+fdat$COUNTY_STATE[fdat$COUNTY_STATE %in% elec.sub.df$COUNTY_STATE==FALSE]<-'forest, WI'
+temp<-data.frame(as.numeric(as.character(elec.sub.df$PERCENT_DE)),
+as.numeric(as.character(elec.sub.df$PERCENT_RE)),
+elec.sub.df$COUNTY_STATE);colnames(temp)<-c("PERCENT_DE",'PERCENT_RE','COUNTY_STATE')
+fdat.temp<-fdat
+fdat<-merge(fdat.temp,temp,by='COUNTY_STATE',all.x=T,all.y=F)
+require(doParallel)

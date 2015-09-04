@@ -1,0 +1,3 @@
+cd ~/Google\ Drive/duckabush
+R CMD BATCH pull_dat_fromcsv.R trypull.Rout
+

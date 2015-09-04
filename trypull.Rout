@@ -1,0 +1,360 @@
+
+R version 3.0.0 (2013-04-03) -- "Masked Marvel"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin10.8.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> #this is the most up-to-date version
+> 
+> siteinfo.wsa.df<-read.csv("//Users/TScott/Google Drive/Watershed/Build/Inputs/WSA_Data/WSAMarch2_2009/wsa_siteinfo_ts_final.csv")
+> ID<-siteinfo.wsa.df$SITE_ID
+> VISIT<-siteinfo.wsa.df$VISIT_NO
+> YEAR_T1<-siteinfo.wsa.df$YEAR
+> NAME<-siteinfo.wsa.df$SITENAME
+> XLONDD<-siteinfo.wsa.df$XLON_DD
+> XLATDD<-siteinfo.wsa.df$XLAT_DD
+> STRAHLER<-siteinfo.wsa.df$STRAHLER
+> COUNTY<-siteinfo.wsa.df$COUNTY
+> STATE<-siteinfo.wsa.df$STATE
+> ECOREGION_NAME<-siteinfo.wsa.df$ECO3_NM
+> ECOREGION_NUM<-siteinfo.wsa.df$ECO3
+> ECOREGION_MEGA<-siteinfo.wsa.df$ECOWSA3
+> ECOREGION_WSA<-siteinfo.wsa.df$ECOWSA9
+> EPAREGION<-siteinfo.wsa.df$EPAREGION
+> NAECOCODE_LEVEL1<-siteinfo.wsa.df$NAECO1
+> NAECOCODE_LEVEL2<-siteinfo.wsa.df$NAECO2
+> NAECOCODE_LEVEL3<-siteinfo.wsa.df$NAECO3
+> REF_CONDITION<-siteinfo.wsa.df$RT_WSA
+> EAST_WEST<-siteinfo.wsa.df$WESTEAST
+> WEIGHT<-siteinfo.wsa.df$WGT_WSA
+> WATERSHED_AREA_1<-siteinfo.wsa.df$WSAREA
+> ELEVATION<-siteinfo.wsa.df$XELEV
+> siteinfo.wsa.df<-data.frame(ID,YEAR_T1,VISIT,NAME,XLONDD,XLATDD,STRAHLER,COUNTY,STATE,ECOREGION_NAME,ECOREGION_NUM,ECOREGION_MEGA,ECOREGION_WSA,EPAREGION,NAECOCODE_LEVEL1,NAECOCODE_LEVEL2,NAECOCODE_LEVEL3,REF_CONDITION,EAST_WEST,WEIGHT,WATERSHED_AREA_1,ELEVATION)
+> 
+> benmet.wsa.df<-read.csv("//Users/TScott/Google Drive/Watershed/Build/Inputs/WSA_Data/WSAMarch2_2009/wsa_benmet300_ts_final.csv")
+> tmp<-benmet.wsa.df
+> VISIT<-tmp$VISIT_NO
+> WSA_6NAT<-tmp$MMI_WSA
+> WSA_6BEST<-tmp$MMI_WSABEST
+> ID<-tmp$SITE_ID
+> wsa.benthic<-data.frame(ID,VISIT,WSA_6NAT,WSA_6BEST)
+> 
+> stressor.wsa.df<-read.csv("//Users/TScott/Google Drive/Watershed/Build/Inputs/WSA_Data/WSAMarch2_2009/watershedstressor.csv")
+> tmp<-stressor.wsa.df
+> VISIT<-tmp$VISIT_NO
+> AGAREA_PERC<-tmp$PAGT
+> FORAREA_PERC<-tmp$PFOR
+> POPDENS<-tmp$POPDENS
+> URBAREA_PERC<-tmp$PURB
+> WETAREA_PERC<-tmp$PWETL
+> ROAD_DENS<-tmp$RDDENS
+> TOT_AREA<-tmp$LANDAREA
+> ID<-tmp$SITE_ID
+> 
+> wsa.stress<-data.frame(ID,VISIT,TOT_AREA,ROAD_DENS,AGAREA_PERC,FORAREA_PERC,POPDENS,URBAREA_PERC,WETAREA_PERC)
+> 
+> watchem.wsa.df<-read.csv("//Users/TScott/Google Drive/Watershed/Build/Inputs/WSA_Data/WSAMarch2_2009/waterchemistry.csv")
+> tmp<-watchem.wsa.df
+> 
+> ID<-tmp$SITE_ID
+> VISIT<-tmp$VISIT_NO
+> NITR_LEV_1<-tmp$NTL
+> SALI_LEV_1<-tmp$CONCAL
+> PHOS_LEV_1<-tmp$PTL
+> ACID_LEV_1<-tmp$ANC
+> wsa.watchem<-data.frame(ID,VISIT,NITR_LEV_1,SALI_LEV_1,PHOS_LEV_1,ACID_LEV_1)
+> 
+> wsa.merge<-merge(merge(merge(siteinfo.wsa.df,wsa.stress,by=c("ID","VISIT")),wsa.watchem,by=c("ID","VISIT")),wsa.benthic,by=c("ID","VISIT"))
+> 
+> 
+> ###############################
+> ###############################
+> ###############################
+> #Code in NRSA data
+> #basic site info
+> siteinfo.nrsa.df<-read.csv("//Users/TScott/Google Drive/Watershed/Build/Inputs/NRSA_Data/NRSA0809_FinalDataFiles/NRSA0809_Data_SiteInformation_130411.csv")
+> tmp<-siteinfo.nrsa.df
+> VISIT<-tmp$VISIT_NO
+> YEAR_T2<-tmp$YEAR
+> LOCAL_NAME<-tmp$LOC_NAME
+> MASTER_ID<-tmp$MASTER_SITEID
+> ID<-tmp$SITE_ID
+> WATERSHED_AREA_2<-tmp$NHDWAT_AREA_SQKM
+> URBAN<-tmp$URBAN
+> nrsa.site<-data.frame(YEAR_T2,VISIT,LOCAL_NAME,ID,MASTER_ID,WATERSHED_AREA_2,URBAN)
+> 
+> #enterococci
+> enter.nrsa.df<-read.csv("//Users/TScott/Google Drive/Watershed/Build/Inputs/NRSA_Data/NRSA0809_FinalDataFiles/NRSA0809_Data_Enterococci_Condition_130322.csv")
+> tmp<-enter.nrsa.df
+> ID<-tmp$SITE_ID
+> VISIT<-tmp$VISIT_NO
+> WSA<-tmp$WSA
+> WHICH_SAMPLE<-tmp$Cat_Unique
+> FED<-tmp$FED_OWN
+> USFS<-tmp$FSEASTWEST
+> nrsa.enter<-data.frame(ID,VISIT,WSA,WHICH_SAMPLE,FED,USFS)
+> head(enter.nrsa.df)
+  ROWNUM   SITE_ID YEAR VISIT_NO INDXVISIT_NRSA      siteID05    NRSA09 WSA
+1      1 FW08AL001 2009        1            YES OWW04440-1041 NRSA_2009 WSA
+2      2 FW08AL002 2009        1            YES OWW04440-0657 NRSA_2009 WSA
+3      3 FW08AL003 2009        1            YES OWW04440-0849 NRSA_2009 WSA
+4      4 FW08AL004 2009        1            YES OWW04440-0182 NRSA_2009 WSA
+5      6 FW08AL006 2009        1            YES OWW04440-0993 NRSA_2009 WSA
+6      7 FW08AL007 2009        1            YES OWW04440-0825 NRSA_2009 WSA
+  EMAP_West    Cat_Unique   Lat_DD    Lon_DD  xAlbers   yAlbers RPT_ECO_9
+1           NRSA_WSA_East 33.22342 -86.88816 842524.9 1168653.7       SAP
+2           NRSA_WSA_East 33.42492 -86.77562 850717.3 1192050.5       SAP
+3           NRSA_WSA_East 31.67664 -87.08381 840644.8  995227.7       CPL
+4           NRSA_WSA_East 33.87273 -86.32363 887177.1 1245959.9       SAP
+5           NRSA_WSA_East 32.99387 -86.36186 893620.2 1147963.5       SAP
+6           NRSA_WSA_East 34.09180 -87.73796 755733.2 1258108.8       SAP
+  RPT_ECO_3 EPARegion State OrderCat UrbanCat WgtWSAeast WgtEMAPwst WgtNRSA09
+1     EHIGH   Region4    AL      1st NonUrban   3645.343          0  3614.959
+2     EHIGH   Region4    AL      2nd    Urban   1892.701          0  1876.926
+3    PLNLOW   Region4    AL      1st NonUrban  12784.218          0  9784.514
+4     EHIGH   Region4    AL      2nd NonUrban   1892.701          0  1876.926
+5     EHIGH   Region4    AL      2nd NonUrban   1892.701          0  1876.926
+6     EHIGH   Region4    AL      1st NonUrban  12784.218          0 12677.660
+                  MAJ_BAS_NM     FED_OWN FSEASTWEST MIS_BASINS SITE_CLASS
+1 South Atlantic-Gulf Region Non Federal       East                  PROB
+2 South Atlantic-Gulf Region Non Federal       East                  PROB
+3 South Atlantic-Gulf Region Non Federal       East                  PROB
+4 South Atlantic-Gulf Region Non Federal       East                  PROB
+5 South Atlantic-Gulf Region Non Federal       East                  PROB
+6 South Atlantic-Gulf Region Non Federal       East                  PROB
+  PUBLICATION_DATE   UID  DATE_COL INDXSAMP_ENTE SAM_CODE SAMPLE_ID FILTER_1
+1         2-Jul-12 13371 15-Jun-09           YES  REGULAR    537798       50
+2         2-Jul-12 13792 26-Jun-09           YES  REGULAR    538246       50
+3         2-Jul-12 14525 13-Aug-09           YES  REGULAR    537278       50
+4         2-Jul-12 13794  1-Jul-09           YES  REGULAR    537502       50
+5         2-Jul-12 13902 27-Jun-09           YES  REGULAR    538403       50
+6         2-Jul-12 13795 19-Jul-09           YES  REGULAR    537726       50
+  FILTER_2 FILTER_3 FILTER_4 SAMPLE_VOL ENT_NEEAR_PCR_CCE_100ML
+1       50       50       50        250                     216
+2       50       50       50        250                     214
+3       50       50       50        250                       0
+4       50       50       50        250                      90
+5       50       50       50        250                     443
+6       50       50       50        250                     723
+  STV.at.1280...used.in.report..ENTE_NEEAR_CCE_STV_COND ENT_PCR_TSC_100ML
+1          1:Does not exceed STV of 1280 CCE per 100 ml              7871
+2          1:Does not exceed STV of 1280 CCE per 100 ml              7817
+3          1:Does not exceed STV of 1280 CCE per 100 ml                 0
+4          1:Does not exceed STV of 1280 CCE per 100 ml              3294
+5          1:Does not exceed STV of 1280 CCE per 100 ml             16192
+6          1:Does not exceed STV of 1280 CCE per 100 ml             26431
+  TSC_ND MDL_TSC_100ML TSC_DL_ALERT RL_TSC_100ML TSC_RL_ALERT ENT_PCR_CCE_100ML
+1                 3000            N         6000            N               392
+2                 3000            N         6000            N               389
+3      Y          3000            Y         6000            Y                 0
+4                 3000            N         6000            Y               164
+5                 3000            N         6000            N               806
+6                 3000            N         6000            N              1315
+  CCE_ND MDL_CCE_100ML CCE_DL_ALERT RL_CCE_100ML CCE_RL_ALERT RPD_FDUP
+1                  149            N          299            N       NA
+2                  149            N          299            N       NA
+3      Y           149            Y          299            Y       NA
+4                  149            N          299            Y       NA
+5                  149            N          299            N       NA
+6                  149            N          299            N       NA
+  QUALIFIER FLAG_LAB COMMENT_LAB FLAG_FIELD                   COMMENT_FIELD  X
+1         Q                                                                 NA
+2         Q                                                                 NA
+3        ND                              IM IM ADDED SAMPLE ID PER TRACKING NA
+4         L                                                                 NA
+5         Q                                                                 NA
+6         Q                                                                 NA
+  X.1 X.2
+1  NA  NA
+2  NA  NA
+3  NA  NA
+4  NA  NA
+5  NA  NA
+6  NA  NA
+> nrow(subset(enter.nrsa.df,enter.nrsa.df$WSA=="WSA"))
+[1] 357
+> 
+> fish.nrsa.df<-read.csv("//Users/TScott/Google Drive/Watershed/Build/Inputs/NRSA_Data/NRSA0809_FinalDataFiles/NRSA0809_Data_Fish_Condition_130322.csv")
+> tmp<-fish.nrsa.df
+> VISIT<-tmp$VISIT_NO
+> FISH_COND<-tmp$FISH_MMI_COND
+> ID<-tmp$SITE_ID
+> nrsa.fish<-data.frame(ID,VISIT,FISH_COND)
+> 
+> hab.nrsa.df<-read.csv("//Users/TScott/Google Drive/Watershed/Build/Inputs/NRSA_Data/NRSA0809_FinalDataFiles/NRSA0809_Data_PhysicalHabitat_Condition_130322.csv")
+> tmp<-hab.nrsa.df
+> ID<-tmp$SITE_ID
+> VISIT<-tmp$VISIT_NO
+> HUM_DIST<-tmp$W1_HALL
+> RIPVEG_COND<-tmp$RIPVEG_COND
+> RIPDIST_COND<-tmp$RIPDIST_COND
+> INSTCOVER_COND<-tmp$INSTRMCVR_COND
+> BEDSED_COND<-tmp$BEDSED_COND
+> nrsa.hab<-data.frame(ID,VISIT,HUM_DIST,RIPVEG_COND,RIPDIST_COND,INSTCOVER_COND,BEDSED_COND)
+> 
+> watchem.nrsa.df<-read.csv("//Users/TScott/Google Drive/Watershed/Build/Inputs/NRSA_Data/NRSA0809_FinalDataFiles/NRSA0809_Data_WaterChemistry_Condition_130322.csv")
+> tmp<-watchem.nrsa.df
+> ID<-tmp$SITE_ID
+> VISIT<-tmp$VISIT_NO
+> ACID_COND_2<-tmp$ANC_COND
+> NITR_COND_2<-tmp$NTL_COND
+> PHOS_COND_2<-tmp$PTL_COND
+> SALI_COND_2<-tmp$SAL_COND
+> NITR_LEV_2<-tmp$NTL
+> PHOS_LEV_2<-tmp$PTL
+> ACID_LEV_2<-tmp$ANC
+> SALI_LEV_2<-tmp$COND
+> 
+> nrsa.chem<-data.frame(ID,VISIT,ACID_COND_2,NITR_COND_2,PHOS_COND_2,SALI_COND_2,SALI_LEV_2,ACID_LEV_2,PHOS_LEV_2,NITR_LEV_2)
+> 
+> nrsa.merge<-merge(merge(merge(merge(nrsa.site,nrsa.enter,by=c("ID","VISIT")),nrsa.fish,by=c("ID","VISIT")),nrsa.hab,by=c("ID","VISIT")),nrsa.chem,by=c("ID","VISIT"))
+> head(nrsa.merge)
+         ID VISIT YEAR_T2          LOCAL_NAME     MASTER_ID WATERSHED_AREA_2
+1 FW08AL001     1    2009   Piney Woods Creek OWW04440-1041            1.017
+2 FW08AL002     1    2009 Little Shades Creek OWW04440-0657           19.957
+3 FW08AL003     1    2009             Unnamed OWW04440-0849            5.453
+4 FW08AL004     1    2009         Early Creek OWW04440-0182           11.084
+5 FW08AL006     1    2009   Finikochika Creek OWW04440-0993           26.126
+6 FW08AL007     1    2009             Unnamed OWW04440-0825            1.951
+     URBAN WSA  WHICH_SAMPLE         FED USFS FISH_COND  HUM_DIST RIPVEG_COND
+1 NonUrban WSA NRSA_WSA_East Non Federal East      Good 0.0000000        Good
+2    Urban WSA NRSA_WSA_East Non Federal East      Good 3.7273273        Poor
+3 NonUrban WSA NRSA_WSA_East Non Federal East   No Data 1.3000200        Good
+4 NonUrban WSA NRSA_WSA_East Non Federal East      Poor 1.8712227        Good
+5 NonUrban WSA NRSA_WSA_East Non Federal East      Good 0.4621273        Good
+6 NonUrban WSA NRSA_WSA_East Non Federal East      Good 0.3409091        Poor
+  RIPDIST_COND INSTCOVER_COND BEDSED_COND ACID_COND_2 NITR_COND_2 PHOS_COND_2
+1          Low           Poor        Good        None        Good        Good
+2         High           Good        Good        None        Good        Good
+3       Medium           Good        Poor        None        Good        Good
+4         High           Good        Fair        None        Fair        Poor
+5       Medium           Poor        Good        None        Fair        Poor
+6       Medium           Good        Good        None        Good        Fair
+  SALI_COND_2 SALI_LEV_2 ACID_LEV_2 PHOS_LEV_2 NITR_LEV_2
+1        Good      34.54     188.67    14.6206         99
+2        Good     288.90    2234.83    11.7750        383
+3        Good      21.43      72.98    45.8175        486
+4        Good     248.00    2274.99    56.6638        736
+5        Good      80.98     612.81    63.1150        969
+6        Good      39.06     246.06    43.3113        126
+> 
+> nrsa.merge$VISIT
+   [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+  [38] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+  [75] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [112] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [149] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [186] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [223] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [260] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [297] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [334] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [371] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [408] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [445] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [482] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [519] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [556] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [593] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [630] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [667] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [704] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [741] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [778] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [815] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [852] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [889] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [926] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [963] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1000] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1037] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1074] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1111] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1148] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1185] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1222] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1259] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1296] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1333] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1370] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1407] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1444] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1481] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1518] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1555] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1592] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1629] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1666] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1703] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1740] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1777] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1814] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1851] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1888] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1925] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+> wsa.merge$VISIT
+   [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+  [38] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+  [75] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [112] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [149] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [186] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [223] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [260] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [297] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [334] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [371] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [408] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [445] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [482] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [519] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [556] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [593] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [630] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [667] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [704] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [741] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [778] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [815] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [852] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [889] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [926] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [963] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1000] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1037] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1074] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1111] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1148] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1185] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1222] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1259] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1296] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1333] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1370] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[1407] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+> nrow(subset(nrsa.merge,nrsa.merge$WSA=="WSA"&nrsa.merge$VISIT==1))
+[1] 366
+> ###############################
+> ###############################
+> ###############################
+> 
+> both.merge<-merge(wsa.merge,nrsa.merge[,-1],by.x="ID",by.y="MASTER_ID")
+> 
+> write.csv(both.merge,"//Users/TScott/Google Drive/Watershed/Build/Inputs/Combined_Data.csv")
+> 
+> proc.time()
+   user  system elapsed 
+  1.422   0.062   1.970 
